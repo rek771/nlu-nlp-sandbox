@@ -4,7 +4,8 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 corpus = ['Whisky cheaper in Alabama.',
-          'Russian whisky is cheaper because it`s vodka.']
+          'Russian whisky is cheaper because it`s vodka.',
+          'Russian whisky is cheaper than Alabama']
 vocab = []
 
 for tmp in corpus:
@@ -19,7 +20,7 @@ sns.heatmap(one_hot,
             annot=True,
             cbar=False,
             xticklabels=vocab,
-            yticklabels=['Предложение 1', 'Предложение 2']
+            yticklabels=[f"Предложение {num}" for num in range(1, len(corpus) + 1)]
             )
 
 plt.show()
