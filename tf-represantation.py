@@ -11,16 +11,16 @@ vocab = []
 for tmp in corpus:
     for word in tmp.split(' '):
         vocab.append(word.replace('.', '').lower())
-vocab = set(vocab)
+vocab = list(set(vocab))
 
-one_hot_vectorizer = CountVectorizer(binary=True)
+one_hot_vectorizer = CountVectorizer(binary=True, vocabulary=vocab)
 one_hot = one_hot_vectorizer.fit_transform(corpus).toarray()
 
 sns.heatmap(one_hot,
             annot=True,
             cbar=False,
             xticklabels=vocab,
-            yticklabels=[f"Предложение {num}" for num in range(1, len(corpus) + 1)]
+            yticklabels=[sentence for sentence in corpus]
             )
 
 plt.show()
